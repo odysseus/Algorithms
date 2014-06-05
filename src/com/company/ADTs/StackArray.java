@@ -1,4 +1,4 @@
-package com.company;
+package com.company.ADTs;
 
 import java.util.Iterator;
 

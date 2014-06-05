@@ -1,5 +1,9 @@
 package com.company;
 
+import com.company.StdLib.In;
+import com.company.StdLib.StdIn;
+import com.company.StdLib.StdOut;
+
 import java.util.Arrays;
 
 public class BinarySearch {
