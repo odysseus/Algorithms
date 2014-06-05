@@ -18,12 +18,18 @@ public class Stack<T> {
         return N;
     }
 
-    public void push(T item) {
+    public <T> void push(T item) {
         Node n = new Node();
         n.item = item;
         n.next = first;
         first = n;
         N++;
+    }
+
+    public <T> T pop() {
+        first = first.next;
+        N--;
+        return (T) first.item;
     }
 
 
