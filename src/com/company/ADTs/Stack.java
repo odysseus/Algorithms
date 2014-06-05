@@ -18,7 +18,7 @@ public class Stack<T> {
         return N;
     }
 
-    public <T> void push(T item) {
+    public void push(T item) {
         Node n = new Node();
         n.item = item;
         n.next = first;
@@ -26,7 +26,7 @@ public class Stack<T> {
         N++;
     }
 
-    public <T> T pop() {
+    public T pop() {
         first = first.next;
         N--;
         return (T) first.item;
