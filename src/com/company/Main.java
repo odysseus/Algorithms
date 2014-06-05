@@ -1,5 +1,7 @@
 package com.company;
 
+import com.company.ADTs.LinkedList;
+
 import java.io.IOException;
 import java.lang.String;
 import java.nio.file.Files;
@@ -20,6 +22,11 @@ public class Main {
         // Binary Search
         runBinarySearch();
 
+        LinkedList<Integer> test = new LinkedList<Integer>();
+        for (int i=1; i<11; i++) {
+            test.append(i);
+        }
+        System.out.printf("Test length: %d\n", test.length());
 
         long endTime = System.nanoTime();
         double stime = (endTime - startTime) / 1000000000.0;

@@ -15,11 +15,35 @@ public class LinkedList<T> implements Iterable<T> {
     }
 
     public boolean isEmpty() {
-        return first != null;
+        return first == null;
     }
 
     public int length() {
         return length;
+    }
+
+    public T get(int index) {
+        if (index > length-1 || isEmpty()) {
+            return null;
+        } else {
+            Node current = first;
+            for (int i=0; i<index; i++) {
+                current = current.next;
+            }
+            return (T) current.item;
+        }
+    }
+
+    private Node getNode(int index) {
+        if (index > length-1 || isEmpty()) {
+            return null;
+        } else {
+            Node current = first;
+            for (int i = 0; i < index; i++) {
+                current = current.next;
+            }
+            return current;
+        }
     }
 
     // Classic stack operations
@@ -67,7 +91,7 @@ public class LinkedList<T> implements Iterable<T> {
 
     // Limited use, but it removes the final item
     // of the list and returns it
-    public T removeLast(T item) {
+    public T removeLast() {
         if (isEmpty()) {
             return null;
         } else {
@@ -75,6 +99,34 @@ public class LinkedList<T> implements Iterable<T> {
             last = last.prev;
             length--;
             return i;
+        }
+    }
+
+    public void remove(int i) {
+        if (i > length-1 || i < 0 || isEmpty()) {
+            Node current = getNode(i);
+            // Node is in the middle of the list
+            if (current.prev != null && current.next != null) {
+                Node remove = current;
+                remove.prev.next = remove.next;
+                remove.next.prev = remove.prev;
+                remove.item = null;
+                length--;
+                // Node is the last in the list
+            } else if (current.prev != null) {
+                Node remove = current;
+                remove.prev.next = null;
+                remove.item = null;
+                last = remove.prev;
+                length--;
+                // Node is the first in the list
+            } else {
+                Node remove = current;
+                remove.next.prev = null;
+                remove.item = null;
+                first = remove.next;
+                length--;
+            }
         }
     }
 
@@ -93,39 +145,6 @@ public class LinkedList<T> implements Iterable<T> {
             T i = (T) current.item;
             current = current.next;
             return i;
-        }
-
-        public void remove() {
-            // Node is in the middle of the list
-            if (current.prev != null && current.next != null) {
-                Node remove = current;
-                remove.prev.next = remove.next;
-                remove.next.prev = remove.prev;
-                remove.item = null;
-                current = remove.prev;
-                length--;
-            // Node is the last in the list
-            } else if (current.prev != null) {
-                Node remove = current;
-                remove.prev.next = null;
-                remove.item = null;
-                last = remove.prev;
-                current = null;
-                length--;
-            // Node is the first in the list
-            } else {
-                Node remove = current;
-                remove.next.prev = null;
-                remove.item = null;
-                first = remove.next;
-                // TODO - Need to test this:
-                // If the first element is removed, when next() is called it will
-                // skip an element, so a new node is created with only the next value
-                // assigned and the first element of the array is set to the next one
-                current = new Node();
-                current.next = remove.next;
-                length--;
-            }
         }
     }
 
