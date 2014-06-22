@@ -17,8 +17,7 @@ public class Main {
     public static void main(String[] args) {
         long startTime = System.nanoTime();
 
-        System.out.println(Parentheses.test("))"));
-
+        System.out.println(Parentheses.test("({[]})"));
 
         long endTime = System.nanoTime();
         double stime = (endTime - startTime) / 1000000000.0;
