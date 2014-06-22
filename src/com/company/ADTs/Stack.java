@@ -8,7 +8,7 @@ public class Stack<T> {
     }
 
     private Node first;
-    private int N;
+    private int N=0;
 
     public boolean isEmpty() {
         return first == null;
@@ -27,13 +27,14 @@ public class Stack<T> {
     }
 
     public T pop() {
-        if (isEmpty()) {
-            return null;
-        } else {
-            first = first.next;
-            N--;
-            return (T) first.item;
-        }
+        T item = (T) first.item;
+        first = first.next;
+        N--;
+        return item;
+    }
+
+    public T peek() {
+        return (T) first.item;
     }
 
 }

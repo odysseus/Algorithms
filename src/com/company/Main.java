@@ -1,6 +1,8 @@
 package com.company;
 
 import com.company.ADTs.LinkedList;
+import com.company.ADTs.Stack;
+import com.company.HW.Parentheses;
 
 import java.io.IOException;
 import java.lang.String;
@@ -15,20 +17,10 @@ public class Main {
     public static void main(String[] args) {
         long startTime = System.nanoTime();
 
-        // Basics
-        System.out.println("Hello, world!");
-        System.out.println(gcd(256, 512));
+        System.out.println(Parentheses.test("(defn sorter-using [ordering-fn]\n" +
+                "  (fn [users]\n" +
+                "    (sort-by ordering-fn users)))"));
 
-        // Binary Search
-        runBinarySearch();
-
-        LinkedList<Integer> test = new LinkedList<Integer>();
-        for (int i=1; i<11; i++) {
-            test.append(i);
-        }
-        for (int i=0; i<test.length(); i++) {
-            System.out.println(test.get(i));
-        }
 
         long endTime = System.nanoTime();
         double stime = (endTime - startTime) / 1000000000.0;
