@@ -1,6 +1,8 @@
 package com.company.ADTs;
 
-public class Stack<T> {
+import java.util.Iterator;
+
+public class Stack<T> implements Iterable<T> {
 
     private class Node<T> {
         T item;
@@ -35,6 +37,32 @@ public class Stack<T> {
 
     public T peek() {
         return (T) first.item;
+    }
+
+    public static Stack<String> copy(Stack<String> toCopy) {
+        Stack<String> result = new Stack<String>();
+        for (String str : toCopy) {
+            result.push(str);
+        }
+        return result;
+    }
+
+    public Iterator<T> iterator() {
+        return new StackIterator();
+    }
+
+    private class StackIterator implements Iterator<T> {
+        private Node current = first;
+
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        public T next() {
+            T i = (T) current.item;
+            current = current.next;
+            return i;
+        }
     }
 
 }
