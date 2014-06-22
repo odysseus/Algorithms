@@ -52,6 +52,9 @@ public class Parentheses {
                 stackTwo.push(item);
             }
         }
+        if (!stackOne.isEmpty() || !stackTwo.isEmpty()) {
+            return false;
+        }
         return true;
     }
 

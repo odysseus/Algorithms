@@ -17,9 +17,7 @@ public class Main {
     public static void main(String[] args) {
         long startTime = System.nanoTime();
 
-        System.out.println(Parentheses.test("(defn sorter-using [ordering-fn]\n" +
-                "  (fn [users]\n" +
-                "    (sort-by ordering-fn users)))"));
+        System.out.println(Parentheses.test("))"));
 
 
         long endTime = System.nanoTime();
