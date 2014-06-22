@@ -27,10 +27,13 @@ public class Stack<T> {
     }
 
     public T pop() {
-        first = first.next;
-        N--;
-        return (T) first.item;
+        if (isEmpty()) {
+            return null;
+        } else {
+            first = first.next;
+            N--;
+            return (T) first.item;
+        }
     }
-
 
 }

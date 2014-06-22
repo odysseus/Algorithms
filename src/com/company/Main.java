@@ -26,7 +26,9 @@ public class Main {
         for (int i=1; i<11; i++) {
             test.append(i);
         }
-        System.out.printf("Test length: %d\n", test.length());
+        for (int i=0; i<test.length(); i++) {
+            System.out.println(test.get(i));
+        }
 
         long endTime = System.nanoTime();
         double stime = (endTime - startTime) / 1000000000.0;

@@ -26,11 +26,22 @@ public class LinkedList<T> implements Iterable<T> {
         if (index > length-1 || isEmpty()) {
             return null;
         } else {
-            Node current = first;
-            for (int i=0; i<index; i++) {
-                current = current.next;
+            // Starts at the end closest to the index
+            if (index <= length / 2) {
+                // Start at front and go forward
+                Node current = first;
+                for (int i = 0; i < index; i++) {
+                    current = current.next;
+                }
+                return (T) current.item;
+            } else {
+                // Start at end and go backwards
+                Node current = last;
+                for (int i=length-1; i>index; i--) {
+                    current = current.prev;
+                }
+                return (T) current.item;
             }
-            return (T) current.item;
         }
     }
 
@@ -89,8 +100,20 @@ public class LinkedList<T> implements Iterable<T> {
         length++;
     }
 
-    // Limited use, but it removes the final item
-    // of the list and returns it
+    // Reads the first item without removing the node
+    public T readFirst() {
+        return (T) first.item;
+    }
+
+    // Reads the last item without removing the node
+    public T readLast() {
+        return (T) last.item;
+    }
+
+    // Limited use, since using append and removeLast is fundamentally
+    // the same as push and pop but less idiomatic. However, what's
+    // the use of a doubly linked list if you don't make use of its
+    // features so this returns the last element and removes the node
     public T removeLast() {
         if (isEmpty()) {
             return null;
@@ -105,26 +128,23 @@ public class LinkedList<T> implements Iterable<T> {
     public void remove(int i) {
         if (i > length-1 || i < 0 || isEmpty()) {
             Node current = getNode(i);
-            // Node is in the middle of the list
             if (current.prev != null && current.next != null) {
-                Node remove = current;
-                remove.prev.next = remove.next;
-                remove.next.prev = remove.prev;
-                remove.item = null;
+                // Node is in the middle of the list
+                current.prev.next = current.next;
+                current.next.prev = current.prev;
+                current.item = null;
                 length--;
-                // Node is the last in the list
             } else if (current.prev != null) {
-                Node remove = current;
-                remove.prev.next = null;
-                remove.item = null;
-                last = remove.prev;
+                // Node is the last in the list
+                current.prev.next = null;
+                current.item = null;
+                last = current.prev;
                 length--;
+            } else if (current.next != null) {
                 // Node is the first in the list
-            } else {
-                Node remove = current;
-                remove.next.prev = null;
-                remove.item = null;
-                first = remove.next;
+                current.next.prev = null;
+                current.item = null;
+                first = current.next;
                 length--;
             }
         }
