@@ -27,14 +27,6 @@ public class Main {
             System.out.println(deck.popRight());
         }
 
-//        LinkedList<String> link = new LinkedList<String>();
-//        for (int i=0; i<10; i++) {
-//            link.append(Integer.toString(i));
-//        }
-//        while (!link.isEmpty()) {
-//            System.out.println(link.removeLast());
-//        }
-
         long endTime = System.nanoTime();
         double stime = (endTime - startTime) / 1000000000.0;
         System.out.printf("\nTook %1.3fs\n", stime);
