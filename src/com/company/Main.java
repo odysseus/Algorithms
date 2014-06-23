@@ -1,6 +1,7 @@
 package com.company;
 
 import com.company.ADTs.LinkedList;
+import com.company.ADTs.ResizingArrayQueueOfStrings;
 import com.company.ADTs.Stack;
 import com.company.HW.Parentheses;
 
@@ -17,7 +18,13 @@ public class Main {
     public static void main(String[] args) {
         long startTime = System.nanoTime();
 
-        System.out.println(Parentheses.test("({[]})"));
+        ResizingArrayQueueOfStrings queue = new ResizingArrayQueueOfStrings();
+        for (int i=0; i<100; i++) {
+            queue.enqueue(Integer.toString(i));
+        }
+        while (!queue.isEmpty()) {
+            System.out.println(queue.dequeue());
+        }
 
         long endTime = System.nanoTime();
         double stime = (endTime - startTime) / 1000000000.0;

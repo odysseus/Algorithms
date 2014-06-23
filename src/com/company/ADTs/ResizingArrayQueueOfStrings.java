@@ -8,6 +8,14 @@ public class ResizingArrayQueueOfStrings {
     private int N = 0;
     private int C = 0;
 
+    public int queueSize() {
+        return q.length;
+    }
+
+    public boolean isEmpty() {
+        return (N-C == 0);
+    }
+
     private void grow() {
         int newLength = q.length * 2;
         String[] newArr = new String[newLength];
@@ -18,10 +26,10 @@ public class ResizingArrayQueueOfStrings {
     }
 
     private void shrink() {
-        int newLength = (q.length / 2) + 1;
+        int newLength = (q.length / 2);
         String[] newArr = new String[newLength];
-        for (int i=C; i<q.length; i++) {
-            newArr[i] = q[i];
+        for (int i=C; i<N; i++) {
+            newArr[i-C] = q[i];
         }
         N = N - C;
         C = 0;
@@ -31,16 +39,14 @@ public class ResizingArrayQueueOfStrings {
     public void enqueue(String str) {
         if (N >= q.length) {
             grow();
-        } else {
-            q[N++] = str;
         }
+        q[N++] = str;
     }
 
     public String dequeue() {
-        String item = q[C++];
         if ((N-C) < (q.length / 2)) {
             shrink();
         }
-        return item;
+        return q[C++];
     }
 }
