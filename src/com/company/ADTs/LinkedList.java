@@ -125,7 +125,7 @@ public class LinkedList<T> implements Iterable<T> {
         }
     }
 
-    public void remove(int i) {
+    public void delete(int i) {
         if (i > length-1 || i < 0 || isEmpty()) {
             Node current = getNode(i);
             if (current.prev != null && current.next != null) {
@@ -148,6 +148,56 @@ public class LinkedList<T> implements Iterable<T> {
                 length--;
             }
         }
+    }
+
+    // Returns true if the list contains the given item
+    // uses the == operator, which in Java has no fucking consistency
+    // so it's not particularly robust
+    public boolean contains(T item) {
+        Node current = first;
+        while (current.next != null) {
+            if (current.item == item) {
+                return true;
+            }
+            current = current.next;
+        }
+        return false;
+    }
+
+    public void removeAfter(Node n) {
+        if (n.next != null) {
+            n.next = n.next.next;
+        }
+    }
+
+    public void insertAfter(Node n, Node ins) {
+        if (!(n == null) && !(ins == null)) {
+            ins.next = n.next;
+            n.next = ins;
+        }
+    }
+
+    public void remove(T item) {
+        Node current = first;
+        while (current.next != null) {
+            if (current.item == item) {
+                current.prev.next = current.next;
+                current.next.prev = current.prev;
+            }
+            current = current.next;
+        }
+    }
+
+    public int max() {
+        Node current = first;
+        int max = 0;
+        while (current.next != null) {
+            if ((int)current.item > max) {
+                max = (int)current.item;
+            }
+            current = current.next;
+        }
+        return max;
     }
 
     public Iterator<T> iterator() {
