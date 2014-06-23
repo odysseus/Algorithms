@@ -1,5 +1,6 @@
 package com.company;
 
+import com.company.ADTs.Deque;
 import com.company.ADTs.LinkedList;
 import com.company.ADTs.ResizingArrayQueueOfStrings;
 import com.company.ADTs.Stack;
@@ -18,13 +19,21 @@ public class Main {
     public static void main(String[] args) {
         long startTime = System.nanoTime();
 
-        ResizingArrayQueueOfStrings queue = new ResizingArrayQueueOfStrings();
-        for (int i=0; i<100; i++) {
-            queue.enqueue(Integer.toString(i));
+        Deque<String> deck = new Deque<String>();
+        for (int i=0; i<10; i++) {
+            deck.pushLeft(Integer.toString(i));
         }
-        while (!queue.isEmpty()) {
-            System.out.println(queue.dequeue());
+        while (!deck.isEmpty()) {
+            System.out.println(deck.popRight());
         }
+
+//        LinkedList<String> link = new LinkedList<String>();
+//        for (int i=0; i<10; i++) {
+//            link.append(Integer.toString(i));
+//        }
+//        while (!link.isEmpty()) {
+//            System.out.println(link.removeLast());
+//        }
 
         long endTime = System.nanoTime();
         double stime = (endTime - startTime) / 1000000000.0;

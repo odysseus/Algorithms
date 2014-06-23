@@ -15,7 +15,7 @@ public class LinkedList<T> implements Iterable<T> {
     }
 
     public boolean isEmpty() {
-        return first == null;
+        return (first == null || last == null);
     }
 
     public int length() {
@@ -115,14 +115,10 @@ public class LinkedList<T> implements Iterable<T> {
     // the use of a doubly linked list if you don't make use of its
     // features so this returns the last element and removes the node
     public T removeLast() {
-        if (isEmpty()) {
-            return null;
-        } else {
-            T i = (T) last.item;
-            last = last.prev;
-            length--;
-            return i;
-        }
+        T i = (T) last.item;
+        last = last.prev;
+        length--;
+        return i;
     }
 
     public void delete(int i) {
@@ -167,6 +163,8 @@ public class LinkedList<T> implements Iterable<T> {
     public void removeAfter(Node n) {
         if (n.next != null) {
             n.next = n.next.next;
+        } else {
+            n.next = null;
         }
     }
 
@@ -192,8 +190,8 @@ public class LinkedList<T> implements Iterable<T> {
         Node current = first;
         int max = 0;
         while (current.next != null) {
-            if ((int)current.item > max) {
-                max = (int)current.item;
+            if ((Integer)current.item > max) {
+                max = (Integer)current.item;
             }
             current = current.next;
         }
