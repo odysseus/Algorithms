@@ -3,8 +3,8 @@ package com.company.ADTs;
 public class Deque<T> {
     private class Node<T> {
         T item;
-        Node next;
-        Node prev;
+        Node next = null;
+        Node prev = null;
     }
 
     private Node first;
@@ -23,12 +23,12 @@ public class Deque<T> {
         Node newn = new Node();
         newn.item = item;
         newn.next = first;
-        newn.prev = null;
-        if (isEmpty()) {
+        if (first != null) {
+            first.prev = newn;
             first = newn;
-            last = newn;
         } else {
             first = newn;
+            last = newn;
         }
         length++;
     }
@@ -38,30 +38,36 @@ public class Deque<T> {
         newn.item = item;
         newn.next = null;
         newn.prev = last;
-        if (isEmpty()) {
-            first = newn;
+        if (last != null) {
+            last.next = newn;
             last = newn;
         } else {
-            last.next = newn;
+            first = newn;
             last = newn;
         }
         length++;
     }
 
     public T popLeft() {
-        Node start = first;
-        T item = (T) start.item;
-        first = start.next;
-        start = null;
+        T item = (T) first.item;
+        if (first.next != null) {
+            first = first.next;
+            first.prev = null;
+        } else {
+            first = null;
+        }
         length--;
         return item;
     }
 
     public T popRight() {
-        Node end = last;
-        T item = (T) end.item;
-        last = end.prev;
-        end = null;
+        T item = (T) last.item;
+        if (last.prev != null) {
+            last = last.prev;
+            last.next = null;
+        } else {
+            last = null;
+        }
         length--;
         return item;
     }

@@ -59,45 +59,54 @@ public class LinkedList<T> implements Iterable<T> {
 
     // Classic stack operations
     public void push(T item) {
-        if (isEmpty()) {
-            first = new Node();
-            first.item = item;
-            last = first;
+        Node n = new Node();
+        n.item = item;
+        n.next = first;
+        if (first != null) {
+            first.prev = n;
+            first = n;
         } else {
-            Node oldfirst = first;
-            first = new Node();
-            first.item = item;
-            first.next = oldfirst;
-            oldfirst.prev = first;
+            first = n;
+            last = n;
         }
         length++;
     }
 
     public T pop() {
-        if (isEmpty()) {
-            return null;
-        } else {
-            T i = (T) first.item;
+        T item = (T) first.item;
+        if (first.next != null) {
             first = first.next;
-            length--;
-            return i;
+            first.prev = null;
+        } else {
+            first = null;
         }
+        return item;
     }
 
-    // Append adds to the end of the list
     public void append(T item) {
-        if (isEmpty()) {
-            last = new Node();
-            last.item = item;
-            first = last;
+        Node n = new Node();
+        n.item = item;
+        n.prev = last;
+        if (last != null) {
+            last.next = n;
+            n = last;
         } else {
-            Node oldlast = last;
-            last = new Node();
-            last.item = item;
-            last.prev = oldlast;
-            oldlast.next = last;
+            first = n;
+            last = n;
         }
         length++;
+    }
+
+    public T popLast() {
+        T item = (T) last.item;
+        if (last.prev != null) {
+            last = last.prev;
+            last.next = null;
+        } else {
+            last = null;
+        }
+        length--;
+        return item;
     }
 
     // Reads the first item without removing the node
@@ -108,17 +117,6 @@ public class LinkedList<T> implements Iterable<T> {
     // Reads the last item without removing the node
     public T readLast() {
         return (T) last.item;
-    }
-
-    // Limited use, since using append and removeLast is fundamentally
-    // the same as push and pop but less idiomatic. However, what's
-    // the use of a doubly linked list if you don't make use of its
-    // features so this returns the last element and removes the node
-    public T removeLast() {
-        T i = (T) last.item;
-        last = last.prev;
-        length--;
-        return i;
     }
 
     public void delete(int i) {
