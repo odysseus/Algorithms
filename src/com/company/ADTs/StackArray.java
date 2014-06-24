@@ -30,7 +30,9 @@ public class StackArray<Item> implements Iterable<Item> {
         Item item = a[--N];
         // Avoid lingering references, allow garbage collection
         a[N] = null;
-        if (N > 0 && N == a.length / 4) resize(a.length / 2);
+        if (N > 0 && N == a.length / 4) {
+            resize(a.length / 2);
+        }
         return item;
     }
 

@@ -14,9 +14,7 @@ public class Selection {
                 if (less(a[j], a[min])) min = j;
             }
             exch(a, i, min);
-            assert isSorted(a, 0, i);
         }
-        assert isSorted(a);
     }
 
     // is v < w ?

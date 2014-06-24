@@ -6,6 +6,7 @@ import com.company.ADTs.ResizingArrayQueueOfStrings;
 import com.company.ADTs.Stack;
 import com.company.HW.Parentheses;
 import com.company.Sorting.Selection;
+import com.company.Sorting.Insertion;
 
 import java.io.IOException;
 import java.lang.String;
@@ -21,7 +22,7 @@ public class Main {
         long startTime = System.nanoTime();
 
         Integer[] sortTest = {9, 4, 5, 3, 2, 1, 6, 7, 8};
-        Selection.sort(sortTest);
+        Insertion.sort(sortTest);
         System.out.println(Arrays.toString(sortTest));
 
         long endTime = System.nanoTime();
