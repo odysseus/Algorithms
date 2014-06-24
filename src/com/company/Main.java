@@ -5,6 +5,7 @@ import com.company.ADTs.LinkedList;
 import com.company.ADTs.ResizingArrayQueueOfStrings;
 import com.company.ADTs.Stack;
 import com.company.HW.Parentheses;
+import com.company.Sorting.Selection;
 
 import java.io.IOException;
 import java.lang.String;
@@ -19,13 +20,9 @@ public class Main {
     public static void main(String[] args) {
         long startTime = System.nanoTime();
 
-        Deque<String> deck = new Deque<String>();
-        for (int i=0; i<10; i++) {
-            deck.pushLeft(Integer.toString(i));
-        }
-        while (!deck.isEmpty()) {
-            System.out.println(deck.popRight());
-        }
+        Integer[] sortTest = {9, 4, 5, 3, 2, 1, 6, 7, 8};
+        Selection.sort(sortTest);
+        System.out.println(Arrays.toString(sortTest));
 
         long endTime = System.nanoTime();
         double stime = (endTime - startTime) / 1000000000.0;
