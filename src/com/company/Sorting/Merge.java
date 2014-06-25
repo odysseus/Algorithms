@@ -1,6 +1,6 @@
 package com.company.Sorting;
 
-import java.util.Comparator;
+import com.company.Sorting.Insertion;
 
 public class Merge {
 
@@ -25,16 +25,31 @@ public class Merge {
         }
     }
 
-    private static void sort(Comparable[] a, int lo, int hi) {
-        if (hi <= lo) return;
-        int mid = lo + (hi - lo) / 2;
-        sort(a, lo, mid);
-        sort(a, mid+1, hi);
-        merge(a, lo, mid, hi);
+    private static void exch(Object[] a, int i, int j) {
+        Object swap = a[i];
+        a[i] = a[j];
+        a[j] = swap;
     }
 
     private static boolean less(Comparable x, Comparable y) {
         return x.compareTo(y) < 0;
     }
+
+    private static void sort(Comparable[] a, int lo, int hi) {
+        if (hi <= lo) return;
+        if (hi - lo <= 8) {
+            for (int i=lo; i<=hi; i++) {
+                for (int j=i; j > lo && less(a[j],a[j-1]); j--) {
+                    exch(a, j, j-1);
+                }
+            }
+        } else {
+            int mid = lo + (hi - lo) / 2;
+            sort(a, lo, mid);
+            sort(a, mid + 1, hi);
+            merge(a, lo, mid, hi);
+        }
+    }
+
 
 }

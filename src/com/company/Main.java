@@ -36,7 +36,7 @@ public class Main {
         Merge.sort(randInts);
         System.out.println(Arrays.toString(randInts));
 
-        System.out.println(SortCompare.compare("Shell", "Merge", 1000000, 10));
+        System.out.println(SortCompare.compare("Shell", "Merge", 100000, 100));
 
         System.out.printf("\nTook %1.3fs\n", timer.elapsedTime());
     }
