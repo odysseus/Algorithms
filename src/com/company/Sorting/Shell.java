@@ -13,8 +13,8 @@ public class Shell {
                 for (int j=i; j >= h && less(a[j], a[j-h]); j-=h) {
                     exch(a, j, j-h);
                 }
-                h /= 3;
             }
+            h /= 3;
         }
     }
 
@@ -25,7 +25,7 @@ public class Shell {
     }
 
     private static boolean less(Comparable a, Comparable b) {
-        return a.compareTo(b) < 0;
+        return (a.compareTo(b) < 0);
     }
 
 }

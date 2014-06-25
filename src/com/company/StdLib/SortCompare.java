@@ -3,6 +3,7 @@ package com.company.StdLib;
 import com.company.Sorting.Insertion;
 import com.company.Sorting.Selection;
 import com.company.Sorting.Shell;
+import com.company.Sorting.Merge;
 
 public class SortCompare {
 
@@ -18,9 +19,9 @@ public class SortCompare {
             case "Shell":
                 Shell.sort(a);
                 break;
-//            case "Merge":
-//                Merge.sort(a);
-//                break;
+            case "Merge":
+                Merge.sort(a);
+                break;
 //            case "Quick":
 //                Quick.sort(a);
 //                break;

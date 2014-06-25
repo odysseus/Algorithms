@@ -8,9 +8,11 @@ import com.company.HW.Parentheses;
 import com.company.Sorting.Selection;
 import com.company.Sorting.Insertion;
 import com.company.Sorting.MaxArrayHeap;
+import com.company.StdLib.StdRandom;
 import com.company.StdLib.Stopwatch;
 import com.company.StdLib.SortCompare;
 import com.company.Sorting.Shell;
+import com.company.Sorting.Merge;
 
 import javafx.scene.paint.Stop;
 import java.io.IOException;
@@ -27,7 +29,14 @@ public class Main {
         Stopwatch timer = new Stopwatch();
         System.out.println("\n");
 
-        System.out.println(SortCompare.compare("Selection", "Shell", 100000, 1));
+        Integer[] randInts = new Integer[100];
+        for (int i=0; i<100; i++) {
+            randInts[i] = StdRandom.uniform(100);
+        }
+        Merge.sort(randInts);
+        System.out.println(Arrays.toString(randInts));
+
+        System.out.println(SortCompare.compare("Shell", "Merge", 1000000, 10));
 
         System.out.printf("\nTook %1.3fs\n", timer.elapsedTime());
     }
