@@ -1,9 +1,6 @@
 package com.company.StdLib;
 
-import com.company.Sorting.Insertion;
-import com.company.Sorting.Selection;
-import com.company.Sorting.Shell;
-import com.company.Sorting.Merge;
+import com.company.Sorting.*;
 
 public class SortCompare {
 
@@ -21,6 +18,9 @@ public class SortCompare {
                 break;
             case "Merge":
                 Merge.sort(a);
+                break;
+            case "MergeBottom":
+                MergeBottom.sort(a);
                 break;
 //            case "Quick":
 //                Quick.sort(a);

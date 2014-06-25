@@ -11,6 +11,22 @@ public class Merge {
         sort(a, 0, a.length-1);
     }
 
+    private static void sort(Comparable[] a, int lo, int hi) {
+        if (hi <= lo) return;
+        if (hi - lo <= 10) {
+            for (int i=lo; i<=hi; i++) {
+                for (int j=i; j > lo && less(a[j],a[j-1]); j--) {
+                    exch(a, j, j-1);
+                }
+            }
+        } else {
+            int mid = lo + (hi - lo) / 2;
+            sort(a, lo, mid);
+            sort(a, mid + 1, hi);
+            merge(a, lo, mid, hi);
+        }
+    }
+
     private static void merge(Comparable[] a, int lo, int mid, int hi) {
         int i = lo;
         int j = mid+1;
@@ -34,22 +50,5 @@ public class Merge {
     private static boolean less(Comparable x, Comparable y) {
         return x.compareTo(y) < 0;
     }
-
-    private static void sort(Comparable[] a, int lo, int hi) {
-        if (hi <= lo) return;
-        if (hi - lo <= 8) {
-            for (int i=lo; i<=hi; i++) {
-                for (int j=i; j > lo && less(a[j],a[j-1]); j--) {
-                    exch(a, j, j-1);
-                }
-            }
-        } else {
-            int mid = lo + (hi - lo) / 2;
-            sort(a, lo, mid);
-            sort(a, mid + 1, hi);
-            merge(a, lo, mid, hi);
-        }
-    }
-
 
 }
