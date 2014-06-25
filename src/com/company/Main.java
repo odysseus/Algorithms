@@ -9,8 +9,10 @@ import com.company.Sorting.Selection;
 import com.company.Sorting.Insertion;
 import com.company.Sorting.MaxArrayHeap;
 import com.company.StdLib.Stopwatch;
-import javafx.scene.paint.Stop;
+import com.company.StdLib.SortCompare;
+import com.company.Sorting.Shell;
 
+import javafx.scene.paint.Stop;
 import java.io.IOException;
 import java.lang.String;
 import java.nio.file.Files;
@@ -23,16 +25,9 @@ public class Main {
 
     public static void main(String[] args) {
         Stopwatch timer = new Stopwatch();
+        System.out.println("\n");
 
-        MaxArrayHeap<Integer> heap = new MaxArrayHeap<Integer>();
-        for (int i=1; i<26; i++) {
-            heap.insert(i, i);
-        }
-        System.out.println(heap);
-        for (int i=0; i<5; i++) {
-            heap.remove();
-        }
-        System.out.println(heap);
+        System.out.println(SortCompare.compare("Selection", "Shell", 100000, 1));
 
         System.out.printf("\nTook %1.3fs\n", timer.elapsedTime());
     }
