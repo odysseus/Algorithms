@@ -7,6 +7,7 @@ import com.company.ADTs.Stack;
 import com.company.HW.Parentheses;
 import com.company.Sorting.Selection;
 import com.company.Sorting.Insertion;
+import com.company.Sorting.MaxArrayHeap;
 
 import java.io.IOException;
 import java.lang.String;
@@ -21,9 +22,15 @@ public class Main {
     public static void main(String[] args) {
         long startTime = System.nanoTime();
 
-        Integer[] sortTest = {9, 4, 5, 3, 2, 1, 6, 7, 8};
-        Insertion.sort(sortTest);
-        System.out.println(Arrays.toString(sortTest));
+        MaxArrayHeap<Integer> heap = new MaxArrayHeap<Integer>();
+        for (int i=0; i<25; i++) {
+            heap.insert(i, i);
+        }
+        System.out.println(heap);
+        for (int i=0; i<5; i++) {
+            heap.remove();
+        }
+        System.out.println(heap);
 
         long endTime = System.nanoTime();
         double stime = (endTime - startTime) / 1000000000.0;
