@@ -8,6 +8,8 @@ import com.company.HW.Parentheses;
 import com.company.Sorting.Selection;
 import com.company.Sorting.Insertion;
 import com.company.Sorting.MaxArrayHeap;
+import com.company.StdLib.Stopwatch;
+import javafx.scene.paint.Stop;
 
 import java.io.IOException;
 import java.lang.String;
@@ -20,10 +22,10 @@ import java.util.Arrays;
 public class Main {
 
     public static void main(String[] args) {
-        long startTime = System.nanoTime();
+        Stopwatch timer = new Stopwatch();
 
         MaxArrayHeap<Integer> heap = new MaxArrayHeap<Integer>();
-        for (int i=0; i<25; i++) {
+        for (int i=1; i<26; i++) {
             heap.insert(i, i);
         }
         System.out.println(heap);
@@ -32,9 +34,7 @@ public class Main {
         }
         System.out.println(heap);
 
-        long endTime = System.nanoTime();
-        double stime = (endTime - startTime) / 1000000000.0;
-        System.out.printf("\nTook %1.3fs\n", stime);
+        System.out.printf("\nTook %1.3fs\n", timer.elapsedTime());
     }
 
     // Euclid's algorithm for greatest common denominator
