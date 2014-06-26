@@ -22,9 +22,9 @@ public class SortCompare {
             case "MergeBottom":
                 MergeBottom.sort(a);
                 break;
-//            case "Quick":
-//                Quick.sort(a);
-//                break;
+            case "Quick":
+                Quick.sort(a);
+                break;
 //            case "Heap":
 //                Heap.sort(a);
 //                break;
