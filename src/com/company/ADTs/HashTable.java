@@ -1,7 +1,9 @@
 package com.company.ADTs;
 
+import java.util.Map;
+
 public class HashTable<Key, Value> {
-    public class Entry<K, V> {
+    public class Entry<K,V> implements Map.Entry<K,V> {
         private K key;
         private V value;
 
@@ -9,11 +11,18 @@ public class HashTable<Key, Value> {
             this.key = key;
             this.value = value;
         }
-        public K key() {
+        public K getKey() {
             return this.key;
         }
-        public V value() {
+        public V getValue() {
             return this.value;
+        }
+        public void setKey(K key) {
+            this.key = key;
+        }
+        public V setValue(V value) {
+            this.value = value;
+            return value;
         }
     }
 
@@ -30,12 +39,17 @@ public class HashTable<Key, Value> {
     }
 
     public void add(Key key, Value value) {
-        Entry entry = new Entry(key, value);
+        Entry entry = new Entry<>(key, value);
         values[hash(key)] = entry;
     }
 
+    public Entry getEntry(Key key) {
+        return values[hash(key)];
+    }
+
     public Value get(Key key) {
-        return (Value) values[hash(key)].value();
+       Entry e = getEntry(key);
+       return (Value) e.getValue();
     }
 
 }
