@@ -18,14 +18,15 @@ public class Main {
         Stopwatch timer = new Stopwatch();
         System.out.println("\n");
 
-        Integer[] randInts = new Integer[100];
-        for (int i=0; i<100; i++) {
-            randInts[i] = StdRandom.uniform(100);
-        }
-        Quick.sort(randInts);
-        System.out.println(Arrays.toString(randInts));
+        System.out.println("Hello, world!".hashCode());
 
-        System.out.println(SortCompare.compare("Quick", "Merge", 10000, 1000));
+        HashTable<String, Integer> test = new HashTable<>(151);
+        test.add("Dog", 12);
+        test.add("Cat", 13);
+        System.out.println(test.get("Dog"));
+        System.out.println(test.get("Cat"));
+
+//        System.out.println(SortCompare.compare("Quick", "Merge", 10000, 1000));
 
         System.out.printf("\nTook %1.3fs\n", timer.elapsedTime());
     }
