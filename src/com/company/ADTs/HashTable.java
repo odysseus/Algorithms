@@ -26,11 +26,11 @@ public class HashTable<Key, Value> {
         }
     }
 
-    private Entry[] values;
+    private LinkedList<Entry<Key,Value>>[] values;
     private int M;
 
     public HashTable(int size) {
-        values = new Entry[size];
+        values = new LinkedList[size];
         M = size;
     }
 
@@ -39,12 +39,24 @@ public class HashTable<Key, Value> {
     }
 
     public void add(Key key, Value value) {
-        Entry entry = new Entry<>(key, value);
-        values[hash(key)] = entry;
+        Entry<Key,Value> entry = new Entry<>(key, value);
+        int index = hash(key);
+        if (values[index] == null) {
+            values[index] = new LinkedList<>();
+            values[index].append(entry);
+        } else {
+            values[index].append(entry);
+        }
     }
 
     public Entry getEntry(Key key) {
-        return values[hash(key)];
+        int index = hash(key);
+        for (Entry e : values[index]) {
+            if (e.getKey() == key) {
+                return e;
+            }
+        }
+        return null;
     }
 
     public Value get(Key key) {
