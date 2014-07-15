@@ -1,36 +1,33 @@
 package com.company.Sorting;
 
-import com.company.StdLib.StdRandom;
-
 public class Quick {
 
     public static void sort(Comparable[] a) {
-        StdRandom.shuffle(a);
         sort(a, 0, a.length-1);
     }
 
     private static void sort(Comparable[] a, int lo, int hi) {
-        if (hi <= lo) return;
-        int j = partition(a, lo, hi);
-        sort(a, lo, j-1);
-        sort(a, j+1, hi);
-    }
-
-    private static int partition(Comparable[] a, int lo, int hi) {
-        int i = lo, j = hi + 1;
-        Comparable v = a[lo];
-        while (true) {
-            while (less(a[++i], v)) if (i == hi) break;
-            while (less(v, a[--j])) if (j == lo) break;
-            if (i >= j) break;
-            exch(a, i, j);
+        if (lo >= hi) return;
+        if (hi-lo == 1) {
+            if (a[lo].compareTo(a[hi]) > 0 ) {
+                exch(a, lo, hi);
+                return;
+            }
+            return;
         }
-        exch(a, lo, j);
-        return j;
-    }
-
-    private static boolean less(Comparable a, Comparable b) {
-        return a.compareTo(b) < 0;
+        int pivot = (lo + hi) / 2;
+        int lp = lo+1, rp = hi;
+        exch(a, lo, pivot);
+        while (rp > lp) {
+            while (lp <= hi && a[lp].compareTo(a[lo]) <= 0) lp++;
+            while (rp >= lo && a[rp].compareTo(a[lo]) > 0) rp--;
+            if (lp < rp) exch(a, lp, rp);
+        }
+        exch(a, rp, lo);
+        int elp = rp;
+        while (elp > lo && a[elp].compareTo(a[rp]) == 0) elp--;
+        sort(a, lo, elp);
+        sort(a, rp+1, hi);
     }
 
     private static void exch(Object[] a, int i, int j) {
