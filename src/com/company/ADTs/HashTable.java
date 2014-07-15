@@ -48,8 +48,12 @@ public class HashTable<Key, Value> {
     }
 
     public Value get(Key key) {
-       Entry e = getEntry(key);
-       return (Value) e.getValue();
+        try {
+            Entry e = getEntry(key);
+            return (Value) e.getValue();
+        } catch (NullPointerException e) {
+            return null;
+        }
     }
 
 }

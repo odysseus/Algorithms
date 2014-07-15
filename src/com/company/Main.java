@@ -20,11 +20,12 @@ public class Main {
 
         System.out.println("Hello, world!".hashCode());
 
-        HashTable<String, Integer> test = new HashTable<>(151);
-        test.add("Dog", 12);
-        test.add("Cat", 13);
-        System.out.println(test.get("Dog"));
-        System.out.println(test.get("Cat"));
+        HashTable<Integer, String> test = new HashTable<>(151);
+        test.add(13, "Dog");
+        test.add(14, "Cat");
+        System.out.println(test.get(13));
+        System.out.println(test.get(14));
+        System.out.println(test.get(32));
 
 //        System.out.println(SortCompare.compare("Quick", "Merge", 10000, 1000));
 
