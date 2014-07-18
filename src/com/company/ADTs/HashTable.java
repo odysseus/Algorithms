@@ -3,30 +3,30 @@ package com.company.ADTs;
 import java.util.Map;
 
 public class HashTable<Key, Value> {
-    public class Entry<K,V> implements Map.Entry<K,V> {
-        private K key;
-        private V value;
+    public class Entry implements Map.Entry<Key,Value> {
+        private Key key;
+        private Value value;
 
-        public Entry(K key, V value) {
+        public Entry(Key key, Value value) {
             this.key = key;
             this.value = value;
         }
-        public K getKey() {
+        public Key getKey() {
             return this.key;
         }
-        public V getValue() {
+        public Value getValue() {
             return this.value;
         }
-        public void setKey(K key) {
+        public void setKey(Key key) {
             this.key = key;
         }
-        public V setValue(V value) {
+        public Value setValue(Value value) {
             this.value = value;
             return value;
         }
     }
 
-    private LinkedList<Entry<Key,Value>>[] values;
+    private LinkedList<Entry>[] values;
     private int M;
 
     public HashTable(int size) {
@@ -39,7 +39,7 @@ public class HashTable<Key, Value> {
     }
 
     public void add(Key key, Value value) {
-        Entry<Key,Value> entry = new Entry<>(key, value);
+        Entry entry = new Entry(key, value);
         int index = hash(key);
         if (values[index] == null) {
             values[index] = new LinkedList<>();
@@ -51,7 +51,8 @@ public class HashTable<Key, Value> {
 
     public Entry getEntry(Key key) {
         int index = hash(key);
-        for (Entry e : values[index]) {
+        for (Object o : values[index]) {
+            Entry e = (Entry) o;
             if (e.getKey() == key) {
                 return e;
             }
