@@ -18,16 +18,28 @@ public class Main {
         Stopwatch timer = new Stopwatch();
         System.out.println("");
 
-        LRUCache<Integer> miniCache = new LRUCache<>(3);
+        LRUCache<Integer> miniCache = new LRUCache<>(2);
         miniCache.save("One", 1);
         miniCache.save("Two", 2);
+        // Cache is now full
         miniCache.save("Three", 3);
+        // One is pushed out
+        miniCache.growTo(6);
         miniCache.save("Four", 4);
+        miniCache.save("Five", 5);
+        miniCache.save("Six", 6);
+        miniCache.save("Seven", 7);
+        //
+        miniCache.shrinkTo(3);
+        // Only 5, 6, 7 remain
 
-        System.out.println(miniCache.get("Four"));
-        System.out.println(miniCache.get("Three"));
-        System.out.println(miniCache.get("Two"));
         System.out.println(miniCache.get("One"));
+        System.out.println(miniCache.get("Two"));
+        System.out.println(miniCache.get("Three"));
+        System.out.println(miniCache.get("Four"));
+        System.out.println(miniCache.get("Five"));
+        System.out.println(miniCache.get("Six"));
+        System.out.println(miniCache.get("Seven"));
 
         System.out.printf("\nTook %1.3fs\n", timer.elapsedTime());
     }

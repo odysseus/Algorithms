@@ -68,4 +68,38 @@ public class LRUCache<T> {
         moveToFront(node);
         return node.item;
     }
+
+    // Grow the cache to a new size
+    // Simply involves increasing the upper bounds
+    public void growTo(int maxLen) {
+        this.maxLen = maxLen;
+    }
+
+    // Shrink the cache to a new size
+    public void shrinkTo(int maxLen) {
+        this.maxLen = maxLen;
+        Node head = first;
+        int count = 1;
+        // Find the new final node on the LL
+        while (count < maxLen) {
+            if (head.next != null) {
+                head = head.next;
+                count++;
+            } else {
+                // If there aren't that many items we have nothing to drop
+                return;
+            }
+        }
+        // head is at the new final item, to remove references to the items
+        // being removed we need to break the references to them from the
+        // main list *and* remove each key individually from the list
+        Node behead = head.next;
+        head.next = null;
+        behead.prev = null;
+        hash.remove(behead.key);
+        while (behead.next != null) {
+            behead = behead.next;
+            hash.remove(behead.key);
+        }
+    }
 }
