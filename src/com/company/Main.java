@@ -20,14 +20,17 @@ public class Main {
 
         System.out.println("Hello, world!".hashCode());
 
-        HashTable<String, Integer> test = new HashTable<>(151);
-        test.add("Dog", 13);
-        test.add("Cat", 14);
-        System.out.println(test.get("Dog"));
-        System.out.println(test.get("Cat"));
-        System.out.println(test.get("Iguana"));
+        LRUCache<Integer> miniCache = new LRUCache<>(3);
+        miniCache.save("One", 1);
+        miniCache.save("Two", 2);
+        miniCache.save("Three", 3);
+        miniCache.save("Four", 4);
 
-//        System.out.println(SortCompare.compare("Quick", "Merge", 10000, 1000));
+        System.out.println(miniCache.get("Four"));
+        System.out.println(miniCache.get("Three"));
+        System.out.println(miniCache.get("Two"));
+        System.out.println(miniCache.get("One"));
+
 
         System.out.printf("\nTook %1.3fs\n", timer.elapsedTime());
     }

@@ -49,14 +49,21 @@ public class LRUCache<T> {
     }
 
     public void moveToFront(Node node) {
-        node.prev.next = node.next;
-        node.next.prev = node.prev;
+        if (node.prev != null) {
+            node.prev.next = node.next;
+        }
+        if (node.next != null) {
+            node.next.prev = node.prev;
+        }
         node.next = first;
         first.prev = node;
         first = node;
     }
 
     public T get(String key) {
+        if (!hash.containsKey(key)) {
+            return null;
+        }
         Node node = hash.get(key);
         moveToFront(node);
         return node.item;
