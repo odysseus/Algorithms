@@ -1,5 +1,7 @@
 package com.company.ADTs;
 
+import java.util.HashMap;
+
 public class LRUCache<T> {
     private class Node {
         String key;
@@ -13,6 +15,7 @@ public class LRUCache<T> {
         }
     }
 
+    private HashMap<String, Node> hash;
     private Node first;
     private Node last;
     private int maxLen;
@@ -20,10 +23,12 @@ public class LRUCache<T> {
 
     public LRUCache(int maxLen) {
         this.maxLen = maxLen;
+        this.hash = new HashMap<>(maxLen);
     }
 
-    public void add(String key, T item) {
+    public void save(String key, T item) {
         Node node = new Node(key, item);
+        hash.put(key, node);
         if (first == null) {
             first = node;
             last = node;
@@ -35,6 +40,7 @@ public class LRUCache<T> {
             N++;
         }
         if (N > maxLen) {
+            hash.remove(last.key);
             last = last.prev;
             last.next.prev = null;
             last.next = null;
@@ -50,16 +56,9 @@ public class LRUCache<T> {
         first = node;
     }
 
-    public T access(String key) {
-        Node front = first;
-        while (front.next != null) {
-            if (front.key.equals(key)) {
-                moveToFront(front);
-                return front.item;
-            } else {
-                front = front.next;
-            }
-        }
-        return null;
+    public T get(String key) {
+        Node node = hash.get(key);
+        moveToFront(node);
+        return node.item;
     }
 }
