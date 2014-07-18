@@ -16,9 +16,7 @@ public class Main {
 
     public static void main(String[] args) {
         Stopwatch timer = new Stopwatch();
-        System.out.println("\n");
-
-        System.out.println("Hello, world!".hashCode());
+        System.out.println("");
 
         LRUCache<Integer> miniCache = new LRUCache<>(3);
         miniCache.save("One", 1);
@@ -30,7 +28,6 @@ public class Main {
         System.out.println(miniCache.get("Three"));
         System.out.println(miniCache.get("Two"));
         System.out.println(miniCache.get("One"));
-
 
         System.out.printf("\nTook %1.3fs\n", timer.elapsedTime());
     }

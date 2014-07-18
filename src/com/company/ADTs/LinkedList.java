@@ -2,13 +2,13 @@ package com.company.ADTs;
 
 import java.util.Iterator;
 
-public class LinkedList<T> implements Iterable<T> {
+public class LinkedList<T> implements Iterable {
 
     private Node first;
     private Node last;
     private int length = 0;
 
-    private class Node<T> {
+    private class Node {
         T item;
         Node next;
         Node prev;
@@ -33,14 +33,14 @@ public class LinkedList<T> implements Iterable<T> {
                 for (int i = 0; i < index; i++) {
                     current = current.next;
                 }
-                return (T) current.item;
+                return current.item;
             } else {
                 // Start at end and go backwards
                 Node current = last;
                 for (int i=length-1; i>index; i--) {
                     current = current.prev;
                 }
-                return (T) current.item;
+                return current.item;
             }
         }
     }
@@ -73,7 +73,7 @@ public class LinkedList<T> implements Iterable<T> {
     }
 
     public T pop() {
-        T item = (T) first.item;
+        T item = first.item;
         if (first.next != null) {
             first = first.next;
             first.prev = null;
@@ -98,7 +98,7 @@ public class LinkedList<T> implements Iterable<T> {
     }
 
     public T popLast() {
-        T item = (T) last.item;
+        T item = last.item;
         if (last.prev != null) {
             last = last.prev;
             last.next = null;
@@ -111,12 +111,12 @@ public class LinkedList<T> implements Iterable<T> {
 
     // Reads the first item without removing the node
     public T readFirst() {
-        return (T) first.item;
+        return first.item;
     }
 
     // Reads the last item without removing the node
     public T readLast() {
-        return (T) last.item;
+        return last.item;
     }
 
     public void delete(int i) {
@@ -196,7 +196,7 @@ public class LinkedList<T> implements Iterable<T> {
         return max;
     }
 
-    public Iterator<T> iterator() {
+    public Iterator iterator() {
         return new ListIterator();
     }
 
@@ -208,7 +208,7 @@ public class LinkedList<T> implements Iterable<T> {
         }
 
         public T next() {
-            T i = (T) current.item;
+            T i = current.item;
             current = current.next;
             return i;
         }
