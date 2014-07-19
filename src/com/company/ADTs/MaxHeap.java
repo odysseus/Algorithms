@@ -1,12 +1,12 @@
-package com.company.Sorting;
+package com.company.ADTs;
 
 import java.util.Vector;
 import java.util.Comparator;
 
-public class MaxArrayHeap<T> {
-    private class Node<T> {
+public class MaxHeap<T> {
+    private class Node {
         int priority;
-        Integer item;
+        T item;
 
         public String toString() {
             return item.toString();
@@ -16,13 +16,13 @@ public class MaxArrayHeap<T> {
     Vector<Node> heap;
     int N = 1;
 
-    public MaxArrayHeap() {
-        heap = new Vector<Node>(64);
-        Node n = new Node<T>();
+    public MaxHeap() {
+        heap = new Vector<>(64);
+        Node n = new Node();
         heap.insertElementAt(n, 0);
     }
 
-    public void insert(int item, int key) {
+    public void insert(T item, int key) {
         Node insert = new Node();
         insert.item = item;
         insert.priority = key;
@@ -43,18 +43,18 @@ public class MaxArrayHeap<T> {
 
     private void swap(int i, int j) {
         Node ni = heap.get(i);
-        Integer swapInt = ni.item;
+        T swap = ni.item;
         int swapPriority = ni.priority;
         Node nj = heap.get(j);
         ni.item = nj.item;
         ni.priority = nj.priority;
-        nj.item = swapInt;
+        nj.item = swap;
         nj.priority = swapPriority;
     }
 
-    public Integer remove() {
+    public T remove() {
         swap(1, --N);
-        Integer item = heap.remove(N).item;
+        T item = heap.remove(N).item;
         downHeap(1);
         return item;
     }

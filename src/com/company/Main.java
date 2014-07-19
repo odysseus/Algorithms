@@ -29,7 +29,6 @@ public class Main {
         miniCache.save("Five", 5);
         miniCache.save("Six", 6);
         miniCache.save("Seven", 7);
-        //
         miniCache.shrinkTo(3);
         // Only 5, 6, 7 remain
 
