@@ -1,12 +1,17 @@
 package com.company.ADTs;
 
 import java.util.Vector;
-import java.util.Comparator;
 
 public class MaxHeap<T> {
     private class Node {
         int priority;
         T item;
+
+        public Node() {}
+        public Node(T item, int priority) {
+            this.item = item;
+            this.priority = priority;
+        }
 
         public String toString() {
             return item.toString();
@@ -22,10 +27,8 @@ public class MaxHeap<T> {
         heap.insertElementAt(n, 0);
     }
 
-    public void insert(T item, int key) {
-        Node insert = new Node();
-        insert.item = item;
-        insert.priority = key;
+    public void insert(T item, int priority) {
+        Node insert = new Node(item, priority);
         heap.insertElementAt(insert, N++);
         upHeap(N-1);
     }
@@ -43,13 +46,8 @@ public class MaxHeap<T> {
 
     private void swap(int i, int j) {
         Node ni = heap.get(i);
-        T swap = ni.item;
-        int swapPriority = ni.priority;
-        Node nj = heap.get(j);
-        ni.item = nj.item;
-        ni.priority = nj.priority;
-        nj.item = swap;
-        nj.priority = swapPriority;
+        heap.set(i, heap.get(j));
+        heap.set(j, ni);
     }
 
     public T remove() {
