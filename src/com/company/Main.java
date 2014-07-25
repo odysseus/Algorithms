@@ -18,17 +18,20 @@ public class Main {
         Stopwatch timer = new Stopwatch();
         System.out.println("");
 
-        MaxHeap<String> heap = new MaxHeap<>();
-
-        heap.insert("Five", 5);
-        heap.insert("Three", 3);
-        heap.insert("Four", 4);
-        heap.insert("One", 1);
-        heap.insert("Twelve", 12);
-        heap.insert("Six", 6);
-        heap.remove();
-
-        System.out.println(heap.toString());
+        MinPQ test = new MinPQ();
+        for (int i=15; i>0; i--) {
+            Integer j = i;
+            test.add(j);
+        }
+        System.out.println(test);
+        test.remove();
+        System.out.println(test);
+        test.remove();
+        System.out.println(test);
+        test.remove();
+        System.out.println(test);
+        test.remove();
+        System.out.println(test);
 
         System.out.printf("\nTook %1.3fs\n", timer.elapsedTime());
     }
