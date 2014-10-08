@@ -23,9 +23,13 @@ public class Main {
         System.out.println("");
 
         RunningMedian m = new RunningMedian();
-        for (Double d = 1.0; d <= 1.0; d += 1.0) {
+        for (Double d = 1.0; d <= 100.0; d += 2.0) {
             m.input(d);
         }
+        for (Double d = 2.0; d <= 100.0; d += 2.0) {
+            m.input(d);
+        }
+        System.out.println(m.countsString());
         System.out.println(m.getMedian());
 
         System.out.printf("\nTook %1.3fs\n", timer.elapsedTime());

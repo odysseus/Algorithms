@@ -37,7 +37,7 @@ public class RunningMedian {
                 head = n;
             } else {
                 Node test = head;
-                while (test.value < n.value && test.next != null) {
+                while (test.next != null && test.next.value < n.value) {
                     test = test.next;
                 }
                 Node next = test.next;
@@ -67,6 +67,23 @@ public class RunningMedian {
             currentNode = currentNode.next;
         }
         return currentNode.value;
+    }
+
+    public String countsString() {
+        String s = "";
+        if (head == null) {
+            return s;
+        }
+        Node current = head;
+        while (current != null) {
+            s += String.format("%2.2f: %d\n", current.value, current.tally);
+            current = current.next;
+        }
+        return s;
+    }
+
+    public String toString() {
+        return getMedian().toString();
     }
 
 }
