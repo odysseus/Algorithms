@@ -6,6 +6,7 @@ import com.company.Iterators.MergeIterator;
 import com.company.Iterators.MultiplesOf;
 import com.company.Sorting.*;
 import com.company.StdLib.*;
+import com.company.Streams.RunningMedian;
 
 import java.io.IOException;
 import java.lang.String;
@@ -21,11 +22,11 @@ public class Main {
         Stopwatch timer = new Stopwatch();
         System.out.println("");
 
-        LazySieve s = new LazySieve();
-
-        for (Integer n=s.next(); n<100; n = s.next()) {
-            System.out.println(n);
+        RunningMedian m = new RunningMedian();
+        for (Double d = 1.0; d <= 1.0; d += 1.0) {
+            m.input(d);
         }
+        System.out.println(m.getMedian());
 
         System.out.printf("\nTook %1.3fs\n", timer.elapsedTime());
     }

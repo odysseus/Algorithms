@@ -8,7 +8,7 @@ public class LazySieve implements Iterator {
     private MergeIterator sieve;
 
     public LazySieve() {
-        current = 1;
+        current = 0;
         sieve = new MergeIterator();
         sieve.addSeq(2);
     }
@@ -18,7 +18,7 @@ public class LazySieve implements Iterator {
     }
 
     public Integer next() {
-        if (current == 1) {
+        if (current == 0) {
             current = 2;
             return 2;
         }
