@@ -6,9 +6,6 @@ import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.List;
 
-/**
- * Created by ryan on 6/22/14.
- */
 public class Parentheses {
 
     public static String cleanString(String str) {

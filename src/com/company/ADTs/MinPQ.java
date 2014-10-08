@@ -82,7 +82,11 @@ public class MinPQ {
         if (N >= 1) {
             s += pq[1].toString();
             for (int i = 2; i < N; i++) {
-                s += ", " + pq[i].toString();
+                if (pq[i] != null) {
+                    s += ", " + pq[i].toString();
+                } else {
+                    s += ", null";
+                }
             }
         }
         s += "]";

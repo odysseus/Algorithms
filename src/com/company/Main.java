@@ -1,6 +1,9 @@
 package com.company;
 
 import com.company.ADTs.*;
+import com.company.Iterators.LazySieve;
+import com.company.Iterators.MergeIterator;
+import com.company.Iterators.MultiplesOf;
 import com.company.Sorting.*;
 import com.company.StdLib.*;
 
@@ -18,20 +21,11 @@ public class Main {
         Stopwatch timer = new Stopwatch();
         System.out.println("");
 
-        MinPQ test = new MinPQ();
-        for (int i=15; i>0; i--) {
-            Integer j = i;
-            test.add(j);
+        LazySieve s = new LazySieve();
+
+        for (Integer n=s.next(); n<100; n = s.next()) {
+            System.out.println(n);
         }
-        System.out.println(test);
-        test.remove();
-        System.out.println(test);
-        test.remove();
-        System.out.println(test);
-        test.remove();
-        System.out.println(test);
-        test.remove();
-        System.out.println(test);
 
         System.out.printf("\nTook %1.3fs\n", timer.elapsedTime());
     }
