@@ -1,18 +1,12 @@
 package com.company;
 
 import com.company.ADTs.*;
-import com.company.Iterators.LazySieve;
-import com.company.Iterators.MergeIterator;
-import com.company.Iterators.MultiplesOf;
-import com.company.Sorting.*;
 import com.company.StdLib.*;
-import com.company.Streams.RunningMedian;
 
 import java.io.IOException;
 import java.lang.String;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
 
@@ -23,7 +17,7 @@ public class Main {
         System.out.println("");
 
         Node head = new Node();
-        head.addValues(new Integer[] { 0, 1, 2, 3, 0, 4, 5, 0, 6, 7, 0, 8, 9} );
+        head.addValues(new Integer[]{0, 1, 2, 3, 0, 4, 5, 0, 6, 7, 0, 8, 9, 10});
         System.out.println(head.toString());
         head.removeValue(0);
         System.out.println(head.toString());
@@ -31,6 +25,9 @@ public class Main {
         System.out.println(mappedHead);
         Node filteredHead = head.filter((Integer x) -> x % 2 == 0);
         System.out.println(filteredHead);
+        System.out.println(head.foldl((Integer x, Integer y) -> x + y));
+        System.out.println(head.foldr((Integer x, Integer y) -> x + y));
+        System.out.println(head.reversed());
 
         System.out.printf("\nTook %1.3fs\n", timer.elapsedTime());
     }

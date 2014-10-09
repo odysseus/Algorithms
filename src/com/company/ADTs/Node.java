@@ -12,6 +12,32 @@ public class Node {
         data = d;
     }
 
+    public boolean isEmpty() {
+        return next == null;
+    }
+
+    public void push(Integer d) {
+        Node n = new Node(d);
+        n.next = next;
+        next = n;
+    }
+
+    public Integer pop() throws UnsupportedOperationException {
+        if (isEmpty()) {
+            throw new UnsupportedOperationException("List is empty - Cannot pop on an empty list");
+        } else {
+            Node head = next;
+            next = head.next;
+            return head.data;
+        }
+    }
+
+    public void addValues(Collection<Integer> c) {
+        for (Integer i : c) {
+            push(i);
+        }
+    }
+
     public void append(Integer d) {
         Node n = new Node(d);
         if (next == null) {
@@ -25,15 +51,9 @@ public class Node {
         }
     }
 
-    public void addValues(Collection<Integer> c) {
-        for (Integer i : c) {
-            append(i);
-        }
-    }
-
     public void addValues(Integer[] c) {
         for (Integer i : c) {
-            append(i);
+            push(i);
         }
     }
 
@@ -62,13 +82,19 @@ public class Node {
         return s;
     }
 
-    public boolean isEmpty() {
-        return next != null;
+    public Node reversed() {
+        Node newHead = new Node();
+        for (Node tail = next; tail != null; tail = tail.next) {
+            newHead.push(tail.data);
+        }
+        return newHead;
     }
 
     /*
      *
      * Functional Programming Patterns
+     * Basic map, filter and reduce functions. All of these return a new
+     * list rather than mutating the current one
      *
      */
 
@@ -86,24 +112,35 @@ public class Node {
 
     public Node map(MapFn fn) {
         Node newHead = new Node();
-        Node tail = next;
-        while (tail != null) {
+        for (Node tail = next; tail != null; tail = tail.next) {
             newHead.append(fn.call(tail.data));
-            tail = tail.next;
         }
         return newHead;
     }
 
     public Node filter(Predicate p) {
         Node newHead = new Node();
-        Node tail = next;
-        while (tail != null) {
+        for (Node tail = next; tail != null; tail = tail.next) {
             if (p.call(tail.data)) {
                 newHead.append(tail.data);
             }
-            tail = tail.next;
         }
         return newHead;
+    }
+
+    public Integer foldl(Reducer fn) {
+        Integer accum = 0;
+        if (next != null) {
+            accum = next.data;
+            for (Node tail = next.next; tail != null; tail = tail.next) {
+                accum = fn.call(accum, tail.data);
+            }
+        }
+        return accum;
+    }
+
+    public Integer foldr(Reducer fn) {
+        return reversed().foldl(fn);
     }
 
 }
