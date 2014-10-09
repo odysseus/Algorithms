@@ -22,15 +22,15 @@ public class Main {
         Stopwatch timer = new Stopwatch();
         System.out.println("");
 
-        RunningMedian m = new RunningMedian();
-        for (Double d = 1.0; d <= 100.0; d += 2.0) {
-            m.input(d);
-        }
-        for (Double d = 2.0; d <= 100.0; d += 2.0) {
-            m.input(d);
-        }
-        System.out.println(m.countsString());
-        System.out.println(m.getMedian());
+        Node head = new Node();
+        head.addValues(new Integer[] { 0, 1, 2, 3, 0, 4, 5, 0, 6, 7, 0, 8, 9} );
+        System.out.println(head.toString());
+        head.removeValue(0);
+        System.out.println(head.toString());
+        Node mappedHead = head.map((Integer x) -> x * x);
+        System.out.println(mappedHead);
+        Node filteredHead = head.filter((Integer x) -> x % 2 == 0);
+        System.out.println(filteredHead);
 
         System.out.printf("\nTook %1.3fs\n", timer.elapsedTime());
     }
