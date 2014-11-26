@@ -1,33 +1,42 @@
 package com.company.Sorting;
 
+import java.util.LinkedList;
+
 public class RadixInt {
 
     public static void sort(Integer[] a) {
-        String[] sa = new String[a.length];
-        int max = 0;
-        for (int i=0; i<a.length; i++) {
-            if (a[i] > max) {
-                max = a[i];
+        int test = 1;
+        LinkedList<Integer> left = new LinkedList<>();
+        LinkedList<Integer> right = new LinkedList<>();
+        for (int i=0; i<30; i++) {
+            boolean allZeroes = true;
+            for (Integer t : a) {
+                if ((t & test) == 0) {
+                    left.add(t);
+                } else {
+                    right.add(t);
+                    allZeroes = false;
+                }
             }
-        }
-        int maxlen = Integer.toString(max).length();
-
-        for (int i=0; i<a.length; i++) {
-            sa[i] = a[i].toString();
-        }
-
-        int place = 0;
-        while (place < maxlen) {
-        }
-    }
-
-    // Finds the integer value at the given place value starting from the end.
-    // 0 indexed
-    public static int reverseIntAt(String s, int i) {
-        if (Math.abs(i) < s.length()) {
-            return s.charAt(s.length() - (i + 1)) - 48;
-        } else {
-            return 0;
+            for (int j=0; j<a.length; j++) {
+                if (!left.isEmpty()) {
+                    a[j] = left.pop();
+                } else {
+                    a[j] = right.pop();
+                }
+            }
+            test *= 2;
+            if (allZeroes) {
+                boolean done = true;
+                for (Integer t: a) {
+                    if (t > test) {
+                        done = false;
+                    }
+                }
+                if (done) {
+                    return;
+                }
+            }
         }
     }
 
